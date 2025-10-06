@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Convite 15 Anos — Login</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="login.css" />
+</head>
+<body class="min-h-screen bg-gradient-to-br from-purple-200 via-pink-200 to-yellow-200 flex items-center justify-center p-4">
+  <div id="login-card" class="relative max-w-md mx-auto bg-white pt-24 pb-12 px-8 rounded-lg shadow-lg overflow-hidden">
+    <div class="absolute top-6 left-1/2 transform -translate-x-1/2 w-32 h-32 rounded-full overflow-hidden border-4 border-white">
+      <img src="../img/15anosLogin.png" alt="15 Anos" class="w-full h-full object-cover" />
+    </div>
+    <h2 class="mt-16 text-2xl text-gray-900 font-semibold mb-2">Convite de 15 Anos</h2>
+    <p class="text-sm text-gray-600 mb-6">Insira seu email e apelido abaixo para receber acesso ao convite de forma segura.</p>
+    <form id="loginForm" class="space-y-4">
+      <div>
+        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+        <input id="email" name="email" type="email" required class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-300" />
+      </div>
+      <div>
+        <label for="apelido" class="block text-sm font-medium text-gray-700">Apelido</label>
+        <input id="apelido" name="apelido" type="text" required class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-300" />
+      </div>
+      <div class="flex justify-end">
+        <button type="submit" class="px-4 py-2 font-medium rounded-md bg-gradient-to-r from-purple-600 via-pink-600 to-yellow-600 text-white hover:opacity-90 transition-opacity">Entrar</button>
+      </div>
+    </form>
+  </div>
+  <div id="loader-overlay">
+    <div class="bubble-container">
+      <div class="bubble"><span></span><span></span><span></span><span></span><span></span></div>
+      <div class="bubble"><span></span><span></span><span></span><span></span><span></span></div>
+      <div class="bubble"><span></span><span></span><span></span><span></span><span></span></div>
+      <div class="bubble"><span></span><span></span><span></span><span></span><span></span></div>
+      <div class="bubble"><span></span><span></span><span></span><span></span><span></span></div>
+      <div class="bubble"><span></span><span></span><span></span><span></span><span></span></div>
+      <div class="bubble"><span></span><span></span><span></span><span></span><span></span></div>
+      <div class="bubble"><span></span><span></span><span></span><span></span><span></span></div>
+    </div>
+    <div class="card">
+      <div class="loader">
+        <p>carregando</p>
+        <div class="words">
+          <span class="word">Festa</span>
+          <span class="word">Amigos</span>
+          <span class="word">Momento</span>
+          <span class="word">Festa</span>
+          <span class="word">Amigos</span>
+          <span class="word">Momento</span>
+          <span class="word">Festa</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const form = document.getElementById('loginForm');
+    const overlay = document.getElementById('loader-overlay');
+    const card = document.getElementById('login-card');
+    overlay.style.display = 'none';
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      overlay.style.display = 'flex';
+      card.style.filter = 'blur(2px)';
+
+      setTimeout(() => {
+        overlay.style.display = 'none';
+        card.style.filter = '';
+        window.location.href = '../index.html';
+      }, 4000);
+    });
+
+    form.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  overlay.style.display = 'flex';
+  card.style.filter = 'blur(2px)';
+
+  const email = document.getElementById('email').value;
+  const apelido = document.getElementById('apelido').value;
+
+  fetch('login.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ email, apelido })
+  })
+    .then(res => res.json())
+    .then(data => {
+      overlay.style.display = 'none';
+      card.style.filter = '';
+
+      if (data.sucesso) {
+        if (data.sucesso) {
+        sessionStorage.setItem("usuario", JSON.stringify({
+        email: data.email,
+        apelido: data.apelido,
+        codigo_convite: data.codigo_convite
+      }));
+        window.location.href = '../index.html';
+      }
+
+      } else {
+        alert(data.erro || 'Erro desconhecido');
+      }
+    })
+    .catch(err => {
+      overlay.style.display = 'none';
+      card.style.filter = '';
+      alert('Erro ao conectar com o servidor');
+      console.error(err);
+    });
+});
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Presença e Presentes</title>
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    rel="stylesheet"
+  />
+
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h1>Presença e Presentes</h1>
+      <table id="guest-table">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Presentou?</th>
+            <th>Detalhes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>João Silva</td>
+            <td><span class="badge badge-yes">Sim</span></td>
+            <td>
+              <button class="details-btn"
+                      data-nome="João Silva"
+                      data-acompanhante="Não">
+                <i class="fa-solid fa-ellipsis-h"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>Maria Souza</td>
+            <td><span class="badge badge-no">Não</span></td>
+            <td>
+              <button class="details-btn"
+                      data-nome="Maria Souza"
+                      data-acompanhante="Sim">
+                <i class="fa-solid fa-ellipsis-h"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>Pedro Lima</td>
+            <td><span class="badge badge-yes">Sim</span></td>
+            <td>
+              <button class="details-btn"
+                      data-nome="Pedro Lima"
+                      data-acompanhante="Não">
+                <i class="fa-solid fa-ellipsis-h"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>Ana Costa</td>
+            <td><span class="badge badge-no">Não</span></td>
+            <td>
+              <button class="details-btn"
+                      data-nome="Ana Costa"
+                      data-acompanhante="Sim">
+                <i class="fa-solid fa-ellipsis-h"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div id="toast" style="
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #4ade80;
+  color: white;
+  padding: 14px 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  font-weight: bold;
+  z-index: 9999;
+  display: none;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+">
+  Mensagem de exemplo
+</div>
+
+<style>
+  @keyframes fadein {
+    from { opacity: 0; bottom: 0; }
+    to   { opacity: 1; bottom: 20px; }
+  }
+  @keyframes fadeout {
+    from { opacity: 1; bottom: 20px; }
+    to   { opacity: 0; bottom: 0; }
+  }
+</style>
+
+
+  <!-- Modal de detalhes -->
+  <div id="detailsModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Detalhes do Convidado</h2>
+      <p><strong>Nome:</strong> <span id="modalNome"></span></p>
+      <p><strong>Tem acompanhante?</strong> <span id="modalAcompanhante"></span></p>
+      <button id="removeBtn" class="remove-btn">Remover Convidado</button>
+    </div>
+  </div>
+
+    <footer class="site-footer">
+    <div class="footer-top">
+      <div class="footer-contact">
+        <div class="contact-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <div>
+            <h4>Encontre-nos</h4>
+            <span>Belo Horizonte – MG</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-phone"></i>
+          <div>
+            <h4>Telefone</h4>
+            <span>(31) 9 9794-1735</span><br>
+            <span>(31) 9 8730-5141</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <i class="far fa-envelope-open"></i>
+          <div>
+            <h4>E-mail</h4>
+            <span>techinnova01@gmail.com</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-widgets">
+        <div class="widget about">
+          <img src="../img/logoAlltech.png" alt="AllTech" class="logo">
+          <p>A AllTech é a revolução digital que sua empresa precisa! Especialistas em desenvolvimento web, entregamos soluções sob medida e de alto desempenho.</p>
+        </div>
+        <div class="widget services">
+          <h4>Serviços</h4>
+          <ul>
+            <li><a href="#">Desenvolvimento de Sites</a></li>
+            <li><a href="#">Aplicações Web</a></li>
+            <li><a href="#">E-commerce</a></li>
+            <li><a href="#">SEO</a></li>
+            <li><a href="#">Suporte</a></li>
+          </ul>
+        </div>
+        <div class="widget talk">
+          <h4>Fale Conosco</h4>
+          <p>Orçamento ou dúvidas? Clique no botão abaixo:</p>
+          <a href="https://wa.me/31997941735" class="btn-whatsapp" target="_blank">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 <a href="https://alltechwebsites.com/" class="alltech-link" id="linkAlltech">AllTech</a>. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
