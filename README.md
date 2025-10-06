@@ -1,5 +1,7 @@
 # Convites Digitais — 15 Anos com QR Code e Check-in
 
+**Última revisão:** 07-2025
+
 Sistema moderno para gerenciamento de convites digitais de aniversário (15 anos), com **QR Code exclusivo por convidado**, **check-in por câmera** (desktop ou smartphone) e **painel administrativo** para controle de presença e acompanhantes. O fluxo cobre do envio do convite à validação na entrada, com atualização de status em tempo real.
 
 ---
